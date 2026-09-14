@@ -1292,3 +1292,142 @@ def get_analysis_endpoint(analysis_id: str):
             next(db_gen)
         except StopIteration:
             pass
+
+
+# ─── IP Intelligence & Geolocation Endpoints ─────────────────────────────────
+# API keys are read server-side ONLY. Never exposed to frontend.
+
+
+class IPIntelRequest(BaseModel):
+    target: str
+
+    @field_validator("target")
+    @classmethod
+    def target_not_empty(cls, v: str) -> str:
+        if not v or not v.strip():
+            raise ValueError("target must not be empty")
+        return v.strip()
+
+
+@app.post("/api/ip-intel", tags=["Geolocation"])
+async def ip_intel_endpoint(request: IPIntelRequest):
+    """
+    Full IP / domain infrastructure intelligence.
+    Accepts: raw IP address, domain name, or URL.
+    Returns: geolocation (IPinfo primary / ip-api.com fallback) +
+             AbuseIPDB reputation (if key configured) +
+             threat_origin marker payload for the Live Map.
+
+    API keys are read from server environment — never exposed to clients.
+    Locations are APPROXIMATE IP-BASED GEOLOCATION.
+    """
+    try:
+        from backend.services.geolocation_service import full_ip_intel
+        result = full_ip_intel(request.target)
+        if "error" in result:
+            raise HTTPException(status_code=422, detail=result["error"])
+        return result
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.error(f"IP intel error for '{request.target}': {exc}", exc_info=True)
+        raise HTTPException(status_code=500, detail=f"IP intelligence lookup failed: {exc}")
+
+
+@app.get("/api/geo/resolve", tags=["Geolocation"])
+async def resolve_domain_endpoint(host: str):
+    """
+    Resolve a domain or hostname to its public IPv4 addresses.
+    Does NOT query external geolocation APIs — DNS only.
+    """
+    if not host or not host.strip():
+        raise HTTPException(status_code=400, detail="host parameter required.")
+    try:
+        from backend.services.geolocation_service import resolve_domain_ips, clean_host_string
+        clean = clean_host_string(host.strip())
+        ips = resolve_domain_ips(clean, max_ips=5)
+        return {
+            "host": clean,
+            "resolved_ips": ips,
+            "count": len(ips),
+        }
+    except Exception as exc:
+        logger.error(f"DNS resolve error for '{host}': {exc}")
+        raise HTTPException(status_code=500, detail=f"DNS resolution failed: {exc}")
+
+
+@app.get("/api/geo/map-data", tags=["Geolocation"])
+def geo_map_data_endpoint(limit: int = 100):
+    """
+    Returns all geolocated analysis records from PostgreSQL formatted
+    as a threat_origin marker list ready for the Live Threat Origin Map.
+    Only returns records with valid lat/lon.
+    """
+    if not _DB_AVAILABLE:
+        return {"status": "unavailable", "markers": [], "count": 0}
+
+    db_gen = get_db()
+    db = next(db_gen)
+    try:
+        from backend.database.models import Analysis
+        records = (
+            db.query(Analysis)
+            .filter(
+                Analysis.latitude.isnot(None),
+                Analysis.longitude.isnot(None),
+                Analysis.latitude != 0,
+                Analysis.longitude != 0,
+            )
+            .order_by(Analysis.created_at.desc())
+            .limit(limit)
+            .all()
+        )
+
+        markers = []
+        for r in records:
+            score = r.risk_score or 0
+            markers.append({
+                "type": r.input_type or "analysis",
+                "label": r.domain or r.input_data or r.id,
+                "ip": r.ip_address or "",
+                "country": r.country or "Unknown",
+                "country_code": "",
+                "region": r.region or "",
+                "city": r.city or "Unknown",
+                "latitude": float(r.latitude),
+                "longitude": float(r.longitude),
+                "isp": r.isp or "",
+                "organization": r.organization or "",
+                "asn": r.asn or "",
+                "timezone": r.timezone or "",
+                "geo_source": r.geo_source or "",
+                "risk_score": score,
+                "threat_type": r.threat_level or "Threat Analysis",
+                "source": f"SatyaAI DB — {r.input_type}",
+                "analysis_id": r.id,
+                "created_at": r.created_at.isoformat() if r.created_at else None,
+                "abuse": {
+                    "confidence_score": r.abuse_confidence_score,
+                    "total_reports": r.abuse_total_reports,
+                    "usage_type": r.abuse_usage_type,
+                } if r.abuse_confidence_score is not None else None,
+            })
+
+        return {
+            "status": "success",
+            "count": len(markers),
+            "markers": markers,
+            "disclaimer": (
+                "APPROXIMATE IP-BASED GEOLOCATION — "
+                "Locations represent network infrastructure, "
+                "not necessarily the attacker's physical location."
+            ),
+        }
+    except Exception as exc:
+        logger.error(f"geo/map-data error: {exc}", exc_info=True)
+        return {"status": "error", "markers": [], "count": 0, "error": str(exc)}
+    finally:
+        try:
+            next(db_gen)
+        except StopIteration:
+            pass

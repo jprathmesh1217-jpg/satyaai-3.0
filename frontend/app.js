@@ -13,6 +13,8 @@ let scanInterval = null;
 let threatMap = null;
 let threatMapMarkers = [];
 let threatMapPolylines = [];
+let _dbMapMarkers = [];   // markers loaded from /api/geo/map-data (DB history)
+
 
 // ── Theme Management (Dark & Light) ──────────────────────────
 
@@ -856,12 +858,11 @@ function initOrRefreshThreatMap() {
 
   if (!threatMap) {
     threatMap = L.map("geo-map-container", {
-      center: [20.5937, 78.9629], // India / Global center
+      center: [20.5937, 78.9629],
       zoom: 3,
       zoomControl: true,
       attributionControl: false,
     });
-
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       maxZoom: 18,
       subdomains: "abcd",
@@ -869,8 +870,19 @@ function initOrRefreshThreatMap() {
   }
 
   threatMap.invalidateSize();
-  updateGeoMapMarkers();
+
+  // Load persisted geo records from DB into the map
+  fetch(`${API_BASE}/api/geo/map-data?limit=100`)
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && Array.isArray(data.markers)) {
+        _dbMapMarkers = data.markers;
+      }
+      updateGeoMapMarkers();
+    })
+    .catch(() => updateGeoMapMarkers());
 }
+
 
 function updateGeoMapMarkers() {
   if (!threatMap || typeof L === "undefined") return;
@@ -916,39 +928,28 @@ function updateGeoMapMarkers() {
     ingestOrigin(currentOrigin, true);
   }
 
-  // 2. History analyses
+  // 2. History analyses (in-session)
   if (Array.isArray(history)) {
     history.forEach(h => {
       const d = h.data || {};
       const origin = d.threat_origin || d.analysis?.threat_origin;
       if (origin) {
         ingestOrigin(origin, false);
-      } else if (d.analysis?.domain_info?.ip && d.geolocation?.latitude && d.geolocation?.longitude) {
-        // Fallback for legacy telemetry with real coords
-        const ip = d.analysis.domain_info.ip;
-        if (!markerMap.has(ip)) {
-          markerMap.set(ip, {
-            type: "domain",
-            label: d.analysis.domain_info.domain || ip,
-            ip: ip,
-            country: d.geolocation.country || "Unknown",
-            country_code: d.geolocation.country_code || "",
-            region: d.geolocation.region || "",
-            city: d.geolocation.city || "",
-            latitude: d.geolocation.latitude,
-            longitude: d.geolocation.longitude,
-            isp: d.geolocation.isp || "Unknown",
-            organization: d.geolocation.org || "",
-            asn: d.geolocation.asn || "",
-            risk_score: h.score || 0,
-            threat_type: h.type || "Threat Analysis",
-            source: "Network Telemetry",
-            isCurrent: false,
-          });
-        }
       }
     });
   }
+
+  // 3. DB-persisted markers from /api/geo/map-data
+  if (Array.isArray(_dbMapMarkers)) {
+    _dbMapMarkers.forEach(m => {
+      if (!m || !m.ip) return;
+      const key = m.ip;
+      if (!markerMap.has(key)) {
+        markerMap.set(key, { ...m, isCurrent: false });
+      }
+    });
+  }
+
 
   const allItems = Array.from(markerMap.values());
   const plottableItems = allItems.filter(
@@ -1038,12 +1039,22 @@ function updateGeoMapMarkers() {
           <span class="threat-popup-label">Risk Score:</span>
           <span class="threat-popup-val" style="color:${markerColor}">${score}/100</span>
         </div>
+        ${item.abuse && item.abuse.confidence_score > 0 ? `
+        <div class="threat-popup-row">
+          <span class="threat-popup-label">Abuse Confidence:</span>
+          <span class="threat-popup-val" style="color:#f87171">${item.abuse.confidence_score}% (${item.abuse.total_reports} reports)</span>
+        </div>` : ''}
+        ${item.geo_source ? `
+        <div class="threat-popup-row">
+          <span class="threat-popup-label">Geo Source:</span>
+          <span class="threat-popup-val">${escapeHTML(item.geo_source)}</span>
+        </div>` : ''}
         <div class="threat-popup-row">
           <span class="threat-popup-label">Intel Source:</span>
           <span class="threat-popup-val">${escapeHTML(item.source || 'Threat Intelligence')}</span>
         </div>
         <div class="threat-popup-disclaimer">
-          ℹ️ Locations are approximate and represent analyzed network infrastructure, not necessarily the attacker's physical location.
+          ℹ️ APPROXIMATE IP-BASED GEOLOCATION — represents analyzed network infrastructure, not an attacker's physical location.
         </div>
       </div>
     `;
