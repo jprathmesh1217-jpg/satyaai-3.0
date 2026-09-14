@@ -1,0 +1,66 @@
+# ─── Secrets & Environment ───────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ─── Python ──────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual Environments ────────────────────────────────────────
+venv/
+venv311/
+.venv/
+env/
+
+# ─── Uploads & Temp Files ────────────────────────────────────────
+backend/uploads/
+*.tmp
+*.temp
+
+# ─── ML Model Binaries (large files — store in Git LFS or separately) ─
+# models/*.pkl
+# models/*.onnx
+# models/*.pt
+# models/*.h5
+# Uncomment above if you don't want to commit model files
+
+# ─── Test & Coverage ─────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# ─── IDE & Editor ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── macOS ───────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# ─── Logs ────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Node (if any frontend tools used) ───────────────────────────
+node_modules/
+npm-debug.log*
+
+# ─── Database ────────────────────────────────────────────────────
+*.sqlite3
+*.db
