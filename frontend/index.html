@@ -101,8 +101,8 @@
               <polyline points="9 12 11 14 15 10"/>
             </svg>
           </div>
-          <h4 class="promo-title">Smarter Security<br>with AI</h4>
-          <p class="promo-desc">Real-time threat detection for a safer digital world.</p>
+          <h4 class="promo-title" data-i18n="sidebar.promo_title">Smarter Security<br>with AI</h4>
+          <p class="promo-desc" data-i18n="sidebar.promo_desc">Real-time threat detection for a safer digital world.</p>
         </div>
 
         <div class="system-status-indicator" title="System Status">
@@ -151,9 +151,9 @@
           <div class="lang-selector-wrapper" title="Language / भाषा / भाषा निवडा">
             <span class="lang-globe-icon" aria-hidden="true">🌐</span>
             <select id="lang-select" class="lang-select" aria-label="Select Language">
-              <option value="en">EN</option>
-              <option value="hi">HI</option>
-              <option value="mr">MR</option>
+              <option value="en">English (EN)</option>
+              <option value="hi">हिंदी (HI)</option>
+              <option value="mr">मराठी (MR)</option>
             </select>
           </div>
         </div>
@@ -413,15 +413,15 @@
                     <canvas id="threat-donut-chart" width="190" height="190"></canvas>
                     <div class="donut-center-badge">
                       <span class="donut-val" id="donut-center-total">24</span>
-                      <span class="donut-sub">Total Threats</span>
+                      <span class="donut-sub" data-i18n="dash.total_threats_sub">Total Threats</span>
                     </div>
                   </div>
                   <div class="donut-legend-col">
-                    <div class="legend-row"><span class="legend-circle blue-dot"></span><span class="legend-name">Phishing Email</span><span class="legend-stat">8 (33%)</span></div>
-                    <div class="legend-row"><span class="legend-circle red-dot"></span><span class="legend-name">Malicious URL</span><span class="legend-stat">7 (29%)</span></div>
-                    <div class="legend-row"><span class="legend-circle purple-dot"></span><span class="legend-name">Image/Video</span><span class="legend-stat">4 (17%)</span></div>
-                    <div class="legend-row"><span class="legend-circle green-dot"></span><span class="legend-name">Fraud Call</span><span class="legend-stat">3 (12%)</span></div>
-                    <div class="legend-row"><span class="legend-circle gray-dot"></span><span class="legend-name">Others</span><span class="legend-stat">2 (8%)</span></div>
+                    <div class="legend-row"><span class="legend-circle blue-dot"></span><span class="legend-name" data-i18n="dash.kpi_email">Phishing Email</span><span class="legend-stat">8 (33%)</span></div>
+                    <div class="legend-row"><span class="legend-circle red-dot"></span><span class="legend-name" data-i18n="dash.kpi_url">Malicious URL</span><span class="legend-stat">7 (29%)</span></div>
+                    <div class="legend-row"><span class="legend-circle purple-dot"></span><span class="legend-name" data-i18n="dash.kpi_media">Image/Video</span><span class="legend-stat">4 (17%)</span></div>
+                    <div class="legend-row"><span class="legend-circle green-dot"></span><span class="legend-name" data-i18n="dash.kpi_call">Fraud Call</span><span class="legend-stat">3 (12%)</span></div>
+                    <div class="legend-row"><span class="legend-circle gray-dot"></span><span class="legend-name" data-i18n="dash.legend_others">Others</span><span class="legend-stat">2 (8%)</span></div>
                   </div>
                 </div>
               </div>
@@ -603,24 +603,24 @@
                   <div class="qr-detector-header">
                     <div class="qr-detector-title-wrap">
                       <span class="qr-icon">📱</span>
-                      <h4 class="qr-detector-title">QR Code Detection &amp; Decoding</h4>
+                      <h4 class="qr-detector-title" data-i18n="qr.title">QR Code Detection &amp; Decoding</h4>
                     </div>
                     <span class="qr-detector-badge">OpenCV QR</span>
                   </div>
-                  <p class="qr-detector-desc">Detect presence of QR codes in an image, inspect bounding points, and decode payload data.</p>
+                  <p class="qr-detector-desc" data-i18n="qr.desc">Detect presence of QR codes in an image, inspect bounding points, and decode payload data.</p>
 
                   <div class="dropzone qr-dropzone" id="dropzone-qr" tabindex="0" role="button" aria-label="Upload QR code image">
                     <div class="dropzone-icon qr-dropzone-icon">📷</div>
-                    <p class="dropzone-title">Drop QR code image here</p>
-                    <p class="dropzone-hint">PNG, JPG, WEBP, BMP supported</p>
+                    <p class="dropzone-title" data-i18n="qr.drop_title">Drop QR code image here</p>
+                    <p class="dropzone-hint" data-i18n="qr.drop_hint">PNG, JPG, WEBP, BMP supported</p>
                     <input type="file" id="file-qr" accept=".png,.jpg,.jpeg,.webp,.bmp,.tiff" hidden />
-                    <button type="button" class="upload-btn">Choose QR Image</button>
+                    <button type="button" class="upload-btn" data-i18n="qr.btn_choose">Choose QR Image</button>
                     <div class="file-preview" id="preview-qr" hidden></div>
                   </div>
 
                   <button class="analyze-btn qr-btn" id="btn-detect-qr" type="button">
                     <span class="btn-icon">⚡</span>
-                    <span id="btn-detect-qr-text">Detect QR Code</span>
+                    <span id="btn-detect-qr-text" data-i18n="qr.btn_detect">Detect QR Code</span>
                     <div class="btn-spinner" id="spinner-detect-qr" hidden></div>
                   </button>
 
@@ -659,43 +659,43 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.email">Email Threat &amp; Header Forensics</h2>
-              <p class="view-subtitle">Inspect raw email messages, parse RFC 822 headers, and verify SPF, DKIM, and DMARC alignment records.</p>
+              <p class="view-subtitle" data-i18n="email.v2_subtitle">Inspect raw email messages, parse RFC 822 headers, and verify SPF, DKIM, and DMARC alignment records.</p>
             </div>
           </div>
           <div class="forensic-view-grid">
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Email Input &amp; File Parser</h3>
+                <h3 class="dash-card-title" data-i18n="email.v2_input_title">Email Input &amp; File Parser</h3>
               </div>
               <div class="forensic-form">
                 <div class="input-group">
-                  <label class="input-label" for="email-subject-v2">Email Subject</label>
-                  <input type="text" id="email-subject-v2" class="text-input" placeholder="e.g. URGENT: Your bank account will be suspended" />
+                  <label class="input-label" for="email-subject-v2" data-i18n="email.subject_label">Email Subject</label>
+                  <input type="text" id="email-subject-v2" class="text-input" data-i18n-placeholder="email.subject_placeholder" placeholder="e.g. URGENT: Your bank account will be suspended" />
                 </div>
                 <div class="input-group">
-                  <label class="input-label" for="email-sender-v2">Declared Sender Address</label>
-                  <input type="text" id="email-sender-v2" class="text-input" placeholder="e.g. alert@sbi-security-verify.com" />
+                  <label class="input-label" for="email-sender-v2" data-i18n="email.sender_label">Declared Sender Address</label>
+                  <input type="text" id="email-sender-v2" class="text-input" data-i18n-placeholder="email.sender_placeholder" placeholder="e.g. alert@sbi-security-verify.com" />
                 </div>
                 <div class="input-group">
-                  <label class="input-label" for="email-body-v2">Email Body &amp; Plaintext</label>
-                  <textarea id="email-body-v2" class="textarea" rows="6" placeholder="Paste full email body text or headers here..."></textarea>
+                  <label class="input-label" for="email-body-v2" data-i18n="email.body_label">Email Body &amp; Plaintext</label>
+                  <textarea id="email-body-v2" class="textarea" rows="6" data-i18n-placeholder="email.body_placeholder" placeholder="Paste full email body text or headers here..."></textarea>
                 </div>
                 <div class="sample-buttons">
-                  <span class="sample-label">Samples:</span>
-                  <button type="button" class="sample-btn" id="v2-sample-email-phish">Phishing Sample</button>
-                  <button type="button" class="sample-btn" id="v2-sample-email-safe">Legitimate Sample</button>
+                  <span class="sample-label" data-i18n="email.samples_label">Samples:</span>
+                  <button type="button" class="sample-btn" id="v2-sample-email-phish" data-i18n="email.sample_phish">Phishing Sample</button>
+                  <button type="button" class="sample-btn" id="v2-sample-email-safe" data-i18n="email.sample_safe">Legitimate Sample</button>
                 </div>
                 <div class="dropzone" id="v2-dropzone-email" style="margin-top: 14px;">
                   <div class="dropzone-icon">📁</div>
-                  <p class="dropzone-title">Upload .eml or RFC 822 Email File</p>
-                  <p class="dropzone-hint">.eml, .msg, .txt supported for full SPF/DKIM extraction</p>
+                  <p class="dropzone-title" data-i18n="email.drop_title">Upload .eml or RFC 822 Email File</p>
+                  <p class="dropzone-hint" data-i18n="email.drop_hint">.eml, .msg, .txt supported for full SPF/DKIM extraction</p>
                   <input type="file" id="v2-file-email" accept=".eml,.msg,.txt" hidden />
-                  <button type="button" class="upload-btn">Choose File</button>
+                  <button type="button" class="upload-btn" data-i18n="image.btn_choose">Choose File</button>
                   <div class="file-preview" id="v2-preview-email" hidden></div>
                 </div>
                 <button class="analyze-btn" id="v2-btn-email" style="margin-top: 16px;">
                   <span class="btn-icon">⚡</span>
-                  <span>Analyze Email Threat</span>
+                  <span data-i18n="email.btn_analyze">Analyze Email Threat</span>
                   <div class="btn-spinner" hidden></div>
                 </button>
               </div>
@@ -740,43 +740,44 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.call">Call Threat &amp; Audio Forensics</h2>
-              <p class="view-subtitle">Detect vishing, banking fraud scripts, synthetic voice clones, and social engineering coercion in phone conversations.</p>
+              <p class="view-subtitle" data-i18n="call.v2_subtitle">Detect vishing, banking fraud scripts, synthetic voice clones, and social engineering coercion in phone conversations.</p>
             </div>
           </div>
           <div class="forensic-view-grid">
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Upload Call Recording Audio</h3>
+                <h3 class="dash-card-title" data-i18n="call.audio_drop_title">Upload Call Recording Audio</h3>
               </div>
               <div class="dropzone" id="v2-dropzone-call">
                 <div class="dropzone-icon">🎙️</div>
-                <p class="dropzone-title">Upload Call Recording Audio File</p>
-                <p class="dropzone-hint">MP3, WAV, M4A, OGG, WEBM, FLAC supported</p>
+                <p class="dropzone-title" data-i18n="call.audio_drop_title">Upload Call Recording Audio File</p>
+                <p class="dropzone-hint" data-i18n="call.audio_drop_hint">MP3, WAV, M4A, OGG, WEBM, FLAC supported</p>
                 <input type="file" id="v2-file-call" accept=".mp3,.wav,.m4a,.ogg,.webm,.flac,.aac" hidden />
-                <button type="button" class="upload-btn">Choose Audio File</button>
+                <button type="button" class="upload-btn" data-i18n="call.btn_choose_audio">Choose Audio File</button>
                 <div class="file-preview" id="v2-preview-call" hidden></div>
               </div>
 
               <div class="input-group" style="margin-top: 20px;">
-                <label class="input-label" for="v2-call-transcript">Or Paste Call Transcript</label>
+                <label class="input-label" for="v2-call-transcript" data-i18n="call.transcript_label">Or Paste Call Transcript</label>
                 <textarea id="v2-call-transcript" class="textarea" rows="5"
+                  data-i18n-placeholder="call.transcript_placeholder"
                   placeholder="Hello, I am calling from State Bank of India fraud department. Your ATM card will be blocked unless you share OTP..."></textarea>
                 <div class="sample-buttons">
-                  <span class="sample-label">Samples:</span>
-                  <button type="button" class="sample-btn" id="v2-sample-call-scam">Scam Call Script</button>
-                  <button type="button" class="sample-btn" id="v2-sample-call-safe">Normal Conversation</button>
+                  <span class="sample-label" data-i18n="call.samples_label">Samples:</span>
+                  <button type="button" class="sample-btn" id="v2-sample-call-scam" data-i18n="call.sample_scam">Scam Call Script</button>
+                  <button type="button" class="sample-btn" id="v2-sample-call-safe" data-i18n="call.sample_safe">Normal Conversation</button>
                 </div>
               </div>
               <button class="analyze-btn" id="v2-btn-call" style="margin-top: 16px;">
                 <span class="btn-icon">⚡</span>
-                <span>Analyze Call Threat</span>
+                <span data-i18n="call.btn_analyze">Analyze Call Threat</span>
                 <div class="btn-spinner" hidden></div>
               </button>
             </div>
 
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Vishing Indicators Detected</h3>
+                <h3 class="dash-card-title" data-i18n="call.v2_indicators_title">Vishing Indicators Detected</h3>
               </div>
               <div class="indicators-reference-list">
                 <div class="ind-ref-item">
@@ -803,26 +804,26 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.media">Image &amp; Video Deepfake Intelligence</h2>
-              <p class="view-subtitle">High-resolution frame extraction, facial landmark inconsistencies, and screenshot OCR scam text detection.</p>
+              <p class="view-subtitle" data-i18n="media.v2_subtitle">High-resolution frame extraction, facial landmark inconsistencies, and screenshot OCR scam text detection.</p>
             </div>
           </div>
           <div class="forensic-view-grid">
             <!-- Image Scanner -->
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Screenshot / Image OCR Scanner</h3>
+                <h3 class="dash-card-title" data-i18n="media.image_scanner_title">Screenshot / Image OCR Scanner</h3>
               </div>
               <div class="dropzone" id="v2-dropzone-image">
                 <div class="dropzone-icon">🖼️</div>
-                <p class="dropzone-title">Drop Screenshot or Image</p>
-                <p class="dropzone-hint">PNG, JPG, WEBP, BMP supported</p>
+                <p class="dropzone-title" data-i18n="image.title">Drop Screenshot or Image</p>
+                <p class="dropzone-hint" data-i18n="image.hint">PNG, JPG, WEBP, BMP supported</p>
                 <input type="file" id="v2-file-image" accept=".png,.jpg,.jpeg,.webp,.bmp" hidden />
-                <button type="button" class="upload-btn">Select Image</button>
+                <button type="button" class="upload-btn" data-i18n="image.btn_choose">Select Image</button>
                 <div class="file-preview" id="v2-preview-image" hidden></div>
               </div>
               <button class="analyze-btn" id="v2-btn-image" style="margin-top: 16px;">
                 <span class="btn-icon">🔍</span>
-                <span>Analyze Image</span>
+                <span data-i18n="image.btn_analyze">Analyze Image</span>
                 <div class="btn-spinner" hidden></div>
               </button>
             </div>
@@ -830,19 +831,19 @@
             <!-- Video Deepfake Scanner -->
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Video Deepfake Neural Frame Analysis</h3>
+                <h3 class="dash-card-title" data-i18n="media.video_scanner_title">Video Deepfake Neural Frame Analysis</h3>
               </div>
               <div class="dropzone" id="v2-dropzone-video">
                 <div class="dropzone-icon">🎬</div>
-                <p class="dropzone-title">Upload Video File</p>
-                <p class="dropzone-hint">MP4, MOV, AVI, MKV, WEBM supported</p>
+                <p class="dropzone-title" data-i18n="video.title">Upload Video File</p>
+                <p class="dropzone-hint" data-i18n="video.hint">MP4, MOV, AVI, MKV, WEBM supported</p>
                 <input type="file" id="v2-file-video" accept=".mp4,.avi,.mov,.mkv,.webm" hidden />
-                <button type="button" class="upload-btn">Select Video</button>
+                <button type="button" class="upload-btn" data-i18n="video.btn_choose">Select Video</button>
                 <div class="file-preview" id="v2-preview-video" hidden></div>
               </div>
               <button class="analyze-btn" id="v2-btn-video" style="margin-top: 16px;">
                 <span class="btn-icon">🔍</span>
-                <span>Analyze Video Deepfake</span>
+                <span data-i18n="video.btn_analyze">Analyze Video Deepfake</span>
                 <div class="btn-spinner" hidden></div>
               </button>
             </div>
@@ -856,25 +857,25 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.url">URL &amp; Phishing Domain Scanner</h2>
-              <p class="view-subtitle">Inspect domain age, typosquatting, entropy, and IP threat reputation across suspicious links.</p>
+              <p class="view-subtitle" data-i18n="url.v2_subtitle">Inspect domain age, typosquatting, entropy, and IP threat reputation across suspicious links.</p>
             </div>
           </div>
           <div class="dashboard-card" style="max-width: 800px;">
             <div class="dash-card-header">
-              <h3 class="dash-card-title">Analyze Web Address</h3>
+              <h3 class="dash-card-title" data-i18n="url.v2_card_title">Analyze Web Address</h3>
             </div>
             <div class="input-group">
-              <label class="input-label" for="v2-url-input">Target URL or Hostname</label>
-              <input type="text" id="v2-url-input" class="text-input" placeholder="http://192.168.1.100/secure-login-verify?token=123" />
+              <label class="input-label" for="v2-url-input" data-i18n="url.v2_target_label">Target URL or Hostname</label>
+              <input type="text" id="v2-url-input" class="text-input" data-i18n-placeholder="url.placeholder" placeholder="http://192.168.1.100/secure-login-verify?token=123" />
               <div class="sample-buttons">
-                <span class="sample-label">Try samples:</span>
-                <button type="button" class="sample-btn" id="v2-sample-url-phish">Phishing Link</button>
-                <button type="button" class="sample-btn" id="v2-sample-url-safe">Clean Website</button>
+                <span class="sample-label" data-i18n="url.samples_label">Try samples:</span>
+                <button type="button" class="sample-btn" id="v2-sample-url-phish" data-i18n="url.sample_phish">Phishing Link</button>
+                <button type="button" class="sample-btn" id="v2-sample-url-safe" data-i18n="url.sample_safe">Clean Website</button>
               </div>
             </div>
             <button class="analyze-btn" id="v2-btn-url" style="margin-top: 14px;">
               <span class="btn-icon">⚡</span>
-              <span>Scan URL Threat</span>
+              <span data-i18n="url.btn_analyze">Scan URL Threat</span>
               <div class="btn-spinner" hidden></div>
             </button>
           </div>
@@ -887,7 +888,7 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.geo">Geolocation &amp; IP Threat Intelligence</h2>
-              <p class="view-subtitle">Interactive threat map showing approximate server locations, autonomous system numbers (ASN), and origin telemetry.</p>
+              <p class="view-subtitle" data-i18n="geo.v2_subtitle">Interactive threat map showing approximate server locations, autonomous system numbers (ASN), and origin telemetry.</p>
             </div>
           </div>
 
@@ -896,7 +897,7 @@
             <div class="dashboard-card map-card">
               <div class="dash-card-header">
                 <div class="header-title-group">
-                  <h3 class="dash-card-title">Live Threat Origin Map</h3>
+                  <h3 class="dash-card-title" data-i18n="geo.map_card_title">Live Threat Origin Map</h3>
                   <span class="dash-card-subtitle">Markers indicate analyzed hosts, mail servers &amp; domain IPs. Locations are approximate.</span>
                 </div>
                 <div class="map-header-right">
@@ -908,7 +909,7 @@
               <!-- Disclaimer Banner -->
               <div class="geo-disclaimer-banner">
                 <span class="disclaimer-icon">ℹ️</span>
-                <span class="disclaimer-text">Locations are approximate and represent analyzed network infrastructure, not necessarily the attacker's physical location.</span>
+                <span class="disclaimer-text" data-i18n="geo.disclaimer">Locations are approximate and represent analyzed network infrastructure, not necessarily the attacker's physical location.</span>
               </div>
 
               <!-- Map Legend -->
@@ -930,14 +931,14 @@
             <!-- Analyzed IP Telemetry List -->
             <div class="dashboard-card geo-telemetry-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Analyzed IP Endpoints</h3>
+                <h3 class="dash-card-title" data-i18n="geo.endpoints_title">Analyzed IP Endpoints</h3>
                 <span class="geo-count-badge" id="geo-endpoint-count">0 Endpoints</span>
               </div>
               <div class="geo-ip-list" id="geo-ip-list">
                 <div class="geo-empty-state" id="geo-empty-state">
                   <span class="geo-empty-icon">🌐</span>
-                  <h4>No Threat Infrastructure Located Yet</h4>
-                  <p>Run a URL or Email threat analysis to extract and plot verified network infrastructure on the map.</p>
+                  <h4 data-i18n="geo.empty_title">No Threat Infrastructure Located Yet</h4>
+                  <p data-i18n="geo.empty_desc">Run a URL or Email threat analysis to extract and plot verified network infrastructure on the map.</p>
                 </div>
               </div>
             </div>
@@ -951,7 +952,7 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.risk">Risk Scoring &amp; Threat DNA Matrix</h2>
-              <p class="view-subtitle">Multimodal risk engine thresholds, behavioral pattern signatures, and intent categorization.</p>
+              <p class="view-subtitle" data-i18n="risk.v2_subtitle">Multimodal risk engine thresholds, behavioral pattern signatures, and intent categorization.</p>
             </div>
           </div>
 
@@ -959,7 +960,7 @@
             <!-- Severity Threshold Reference -->
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Risk Scoring Protocol (0 - 100)</h3>
+                <h3 class="dash-card-title" data-i18n="risk.protocol_title">Risk Scoring Protocol (0 - 100)</h3>
               </div>
               <div class="risk-bands-list">
                 <div class="risk-band-item band-low">
@@ -984,7 +985,7 @@
             <!-- Threat DNA Matrix Patterns -->
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Scam Digital DNA Taxonomy</h3>
+                <h3 class="dash-card-title" data-i18n="risk.dna_title">Scam Digital DNA Taxonomy</h3>
               </div>
               <div class="dna-taxonomy-grid">
                 <div class="dna-tax-item"><span class="dna-tax-icon">🚨</span><span>Urgency &amp; Coercion</span></div>
@@ -1007,20 +1008,20 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.reports">Threat Reports &amp; Forensic Dossiers</h2>
-              <p class="view-subtitle">Review, print, and export executive threat reports generated during your investigation session.</p>
+              <p class="view-subtitle" data-i18n="reports.v2_subtitle">Review, print, and export executive threat reports generated during your investigation session.</p>
             </div>
           </div>
 
           <div class="dashboard-card">
             <div class="dash-card-header">
-              <h3 class="dash-card-title">Session Investigation Archive</h3>
-              <button type="button" class="dash-card-action-btn" id="btn-clear-all-reports">Clear Session</button>
+              <h3 class="dash-card-title" data-i18n="reports.archive_title">Session Investigation Archive</h3>
+              <button type="button" class="dash-card-action-btn" id="btn-clear-all-reports" data-i18n="reports.clear_session">Clear Session</button>
             </div>
             <div class="reports-archive-list" id="reports-archive-list">
               <div class="reports-empty-state" id="reports-empty-state">
                 <span class="reports-empty-icon">📑</span>
-                <h4>No Investigation Reports Available</h4>
-                <p>Execute an analysis on any suspicious message, URL, email, or media file to generate formal threat dossiers.</p>
+                <h4 data-i18n="reports.empty_title">No Investigation Reports Available</h4>
+                <p data-i18n="reports.empty_desc">Execute an analysis on any suspicious message, URL, email, or media file to generate formal threat dossiers.</p>
               </div>
             </div>
           </div>
@@ -1033,7 +1034,7 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.copilot">AI Fraud Investigation Copilot</h2>
-              <p class="view-subtitle">Autonomous threat reasoning engine with Retrieval-Augmented Generation (RAG) over Indian cyber scam types and threat telemetry.</p>
+              <p class="view-subtitle" data-i18n="copilot.subtitle">Autonomous threat reasoning engine with Retrieval-Augmented Generation (RAG) over Indian cyber scam types and threat telemetry.</p>
             </div>
           </div>
 
@@ -1043,25 +1044,25 @@
               <div class="copilot-evidence-bar" id="v2-copilot-evidence-bar">
                 <div class="evidence-status-left">
                   <span class="pulse-dot"></span>
-                  <span class="evidence-badge-label" id="v2-copilot-status-text">Mode: General Cyber Threat Knowledge Base</span>
+                  <span class="evidence-badge-label" id="v2-copilot-status-text" data-i18n="copilot.badge_general">Mode: General Cyber Threat Knowledge Base</span>
                   <span class="copilot-evidence-id" id="v2-copilot-active-id" hidden></span>
                   <span class="copilot-evidence-pill" id="v2-copilot-active-pill" hidden></span>
                 </div>
                 <div class="evidence-status-right">
-                  <button type="button" class="copilot-clear-btn" id="v2-btn-copilot-clear" hidden>✕ Clear Evidence</button>
+                  <button type="button" class="copilot-clear-btn" id="v2-btn-copilot-clear" hidden data-i18n="copilot.btn_clear_evidence">✕ Clear Evidence</button>
                 </div>
               </div>
 
               <!-- Fullview Quick Question Chips -->
               <div class="copilot-chips-container">
-                <span class="chips-label">Quick Investigation Queries:</span>
+                <span class="chips-label" data-i18n="copilot.chips_heading">Quick Investigation Queries:</span>
                 <div class="chips-cloud" id="v2-copilot-chips">
-                  <button type="button" class="suggestion-chip" data-query="Why is this suspicious?">Why is this suspicious?</button>
-                  <button type="button" class="suggestion-chip" data-query="What type of scam is this?">What type of scam is this?</button>
-                  <button type="button" class="suggestion-chip" data-query="What are the red flags?">What are the red flags?</button>
-                  <button type="button" class="suggestion-chip" data-query="What is the attacker trying to steal?">What is the attacker trying to steal?</button>
-                  <button type="button" class="suggestion-chip" data-query="What immediate action should I take?">What should I do now?</button>
-                  <button type="button" class="suggestion-chip" data-query="How do I report this scam to 1930 and cybercrime portal?">How do I report this scam?</button>
+                  <button type="button" class="suggestion-chip" data-query="Why is this suspicious?" data-i18n="copilot.chip_why">Why is this suspicious?</button>
+                  <button type="button" class="suggestion-chip" data-query="What type of scam is this?" data-i18n="copilot.chip_type">What type of scam is this?</button>
+                  <button type="button" class="suggestion-chip" data-query="What are the red flags?" data-i18n="copilot.chip_redflags">What are the red flags?</button>
+                  <button type="button" class="suggestion-chip" data-query="What is the attacker trying to steal?" data-i18n="copilot.chip_goal">What is the attacker trying to steal?</button>
+                  <button type="button" class="suggestion-chip" data-query="What immediate action should I take?" data-i18n="copilot.chip_action">What should I do now?</button>
+                  <button type="button" class="suggestion-chip" data-query="How do I report this scam to 1930 and cybercrime portal?" data-i18n="copilot.chip_report">How do I report this scam?</button>
                 </div>
               </div>
 
@@ -1074,7 +1075,7 @@
                       <span class="msg-author">SATYA AI Copilot</span>
                       <span class="msg-badge">RAG Intelligence</span>
                     </div>
-                    <div class="msg-body">
+                    <div class="msg-body" data-i18n="copilot.chat_welcome">
                       Hello! I am your <strong>SATYA AI Fraud Investigation Copilot</strong>. Ask me questions about any active threat evidence, or ask general questions regarding cyber scams, banking fraud, UPI traps, digital arrest schemes, and legal reporting steps.
                     </div>
                   </div>
@@ -1084,6 +1085,7 @@
               <!-- Fullview Input Form -->
               <form class="copilot-input-bar" id="v2-copilot-form" onsubmit="return false;" style="margin-top: 14px;">
                 <input type="text" id="v2-copilot-input" class="copilot-input" autocomplete="off"
+                  data-i18n-placeholder="copilot.input_placeholder"
                   placeholder="Ask Copilot anything about this threat or cyber scams (Press Enter)..." />
                 <button type="submit" class="copilot-send-btn" id="v2-btn-copilot-send" aria-label="Send message">
                   <span class="send-icon">➤</span>
@@ -1100,7 +1102,7 @@
           <div class="view-header-banner">
             <div class="view-header-meta">
               <h2 class="view-title" data-i18n="nav.settings">System Diagnostics &amp; Settings</h2>
-              <p class="view-subtitle">Live health status of detection models, platform configuration, and telemetry preferences.</p>
+              <p class="view-subtitle" data-i18n="settings.v2_subtitle">Live health status of detection models, platform configuration, and telemetry preferences.</p>
             </div>
           </div>
 
@@ -1108,8 +1110,8 @@
             <!-- Model Health Status Card -->
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">ML Model &amp; Service Availability</h3>
-                <button type="button" class="dash-card-action-btn" id="btn-refresh-health">Refresh Health</button>
+                <h3 class="dash-card-title" data-i18n="settings.health_title">ML Model &amp; Service Availability</h3>
+                <button type="button" class="dash-card-action-btn" id="btn-refresh-health" data-i18n="settings.refresh_health">Refresh Health</button>
               </div>
               <div class="health-services-list" id="health-services-list">
                 <div class="health-item"><span class="health-name">Message Classifier (SMS / Text)</span><span class="health-badge health-ok" id="health-msg-badge">Checking...</span></div>
@@ -1123,7 +1125,7 @@
             <!-- Platform Information -->
             <div class="dashboard-card">
               <div class="dash-card-header">
-                <h3 class="dash-card-title">Platform Information</h3>
+                <h3 class="dash-card-title" data-i18n="settings.platform_title">Platform Information</h3>
               </div>
               <div class="system-meta-list">
                 <div class="sys-meta-row"><span>Platform Name:</span><strong>SATYA AI 3.0</strong></div>

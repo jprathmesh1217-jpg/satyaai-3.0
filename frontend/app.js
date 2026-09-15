@@ -110,7 +110,9 @@ const SAMPLES_DATA = {
 };
 
 function getLocalizedSamples() {
-  const currentLang = (typeof getCurrentLang === "function") ? getCurrentLang() : "en";
+  const currentLang = (typeof getLanguage === "function")
+    ? getLanguage()
+    : ((typeof getCurrentLang === "function") ? getCurrentLang() : "en");
   return SAMPLES_DATA[currentLang] || SAMPLES_DATA.en;
 }
 
@@ -2347,8 +2349,22 @@ function initCopilotControls() {
 }
 
 // ── Application Bootstrap ───────────────────────────────────────────────────
+window.addEventListener("languageChanged", (e) => {
+  const lang = e.detail?.lang || "en";
+  drawActivityChart();
+  drawDonutChart();
+  const floatStatus = document.getElementById("copilot-evidence-status-text");
+  if (floatStatus && !currentEvidenceContext) {
+    floatStatus.textContent = (typeof t === "function") ? t("copilot.badge_general") : "Mode: General Cyber Threat Knowledge Base";
+  }
+  const v2Status = document.getElementById("v2-copilot-status-text");
+  if (v2Status && !currentEvidenceContext) {
+    v2Status.textContent = (typeof t === "function") ? t("copilot.badge_general") : "Mode: General Cyber Threat Knowledge Base";
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof initLanguageSelector === "function") initLanguageSelector();
   loadStoredHistory();
   initSidebarControls();
   initQuickActions();

@@ -211,6 +211,48 @@ const translations = {
     "history.empty": "No analysis performed in this session yet.",
     "footer.rights": "SATYA AI 3.0 © 2026 — Multimodal Cyber Intelligence Platform",
     "footer.note": "For educational & hackathon demonstration purposes.",
+
+    // Additional UI & V2 Views
+    "sidebar.promo_title": "Smarter Security<br>with AI",
+    "sidebar.promo_desc": "Real-time threat detection for a safer digital world.",
+    "dash.legend_others": "Others",
+    "dash.total_threats_sub": "Total Threats",
+    "qr.title": "QR Code Detection & Decoding",
+    "qr.desc": "Detect presence of QR codes in an image, inspect bounding points, and decode payload data.",
+    "qr.drop_title": "Drop QR code image here",
+    "qr.drop_hint": "PNG, JPG, WEBP, BMP supported",
+    "qr.btn_choose": "Choose QR Image",
+    "qr.btn_detect": "Detect QR Code",
+    "email.v2_subtitle": "Inspect raw email messages, parse RFC 822 headers, and verify SPF, DKIM, and DMARC alignment records.",
+    "email.v2_input_title": "Email Input & File Parser",
+    "email.v2_guide_title": "Authentication Protocol Checklist",
+    "call.v2_subtitle": "Detect vishing, banking fraud scripts, synthetic voice clones, and social engineering coercion in phone conversations.",
+    "call.v2_indicators_title": "Vishing Indicators Detected",
+    "call.btn_choose_audio": "Choose Audio File",
+    "media.v2_subtitle": "High-resolution frame extraction, facial landmark inconsistencies, and screenshot OCR scam text detection.",
+    "media.image_scanner_title": "Screenshot / Image OCR Scanner",
+    "media.video_scanner_title": "Video Deepfake Neural Frame Analysis",
+    "url.v2_subtitle": "Inspect domain age, typosquatting, entropy, and IP threat reputation across suspicious links.",
+    "url.v2_card_title": "Analyze Web Address",
+    "url.v2_target_label": "Target URL or Hostname",
+    "geo.v2_subtitle": "Interactive threat map showing approximate server locations, autonomous system numbers (ASN), and origin telemetry.",
+    "geo.map_card_title": "Live Threat Origin Map",
+    "geo.disclaimer": "Locations are approximate and represent analyzed network infrastructure, not necessarily the attacker's physical location.",
+    "geo.endpoints_title": "Analyzed IP Endpoints",
+    "geo.empty_title": "No Threat Infrastructure Located Yet",
+    "geo.empty_desc": "Run a URL or Email threat analysis to extract and plot verified network infrastructure on the map.",
+    "risk.v2_subtitle": "Multimodal risk engine thresholds, behavioral pattern signatures, and intent categorization.",
+    "risk.protocol_title": "Risk Scoring Protocol (0 - 100)",
+    "risk.dna_title": "Scam Digital DNA Taxonomy",
+    "reports.v2_subtitle": "Review, print, and export executive threat reports generated during your investigation session.",
+    "reports.archive_title": "Session Investigation Archive",
+    "reports.clear_session": "Clear Session",
+    "reports.empty_title": "No Investigation Reports Available",
+    "reports.empty_desc": "Execute an analysis on any suspicious message, URL, email, or media file to generate formal threat dossiers.",
+    "settings.v2_subtitle": "Live health status of detection models, platform configuration, and telemetry preferences.",
+    "settings.health_title": "ML Model & Service Availability",
+    "settings.refresh_health": "Refresh Health",
+    "settings.platform_title": "Platform Information",
   },
 
   hi: {
@@ -420,6 +462,48 @@ const translations = {
     "history.empty": "इस सत्र में अभी तक कोई विश्लेषण नहीं किया गया।",
     "footer.rights": "सत्य AI 3.0 © 2026 — मल्टीमॉडल साइबर इंटेलिजेंस प्लेटफॉर्म",
     "footer.note": "शैक्षणिक और हैकाथॉन प्रदर्शन उद्देश्यों के लिए।",
+
+    // Additional UI & V2 Views
+    "sidebar.promo_title": "एआई के साथ<br>स्मार्ट सुरक्षा",
+    "sidebar.promo_desc": "सुरक्षित डिजिटल दुनिया के लिए वास्तविक समय में खतरा पहचान।",
+    "dash.legend_others": "अन्य",
+    "dash.total_threats_sub": "कुल खतरे",
+    "qr.title": "क्यूआर कोड पहचान और डिकोडिंग",
+    "qr.desc": "छवि में क्यूआर कोड की उपस्थिति पहचानें, निर्देशांक जांचें और डेटा डिकोड करें।",
+    "qr.drop_title": "क्यूआर कोड छवि यहाँ छोड़ें",
+    "qr.drop_hint": "PNG, JPG, WEBP, BMP समर्थित",
+    "qr.btn_choose": "क्यूआर छवि चुनें",
+    "qr.btn_detect": "क्यूआर कोड पहचानें",
+    "email.v2_subtitle": "ईमेल संदेशों की जांच करें, RFC 822 हेडर पार्स करें और SPF, DKIM, DMARC रिकॉर्ड सत्यापित करें।",
+    "email.v2_input_title": "ईमेल इनपुट और फ़ाइल पार्सर",
+    "email.v2_guide_title": "प्रमाणीकरण प्रोटोकॉल चेकलिस्ट",
+    "call.v2_subtitle": "फ़ोन कॉल में विशिंग, बैंकिंग फ्रॉड स्क्रिप्ट, वॉयस क्लोन और दबाव की पहचान करें।",
+    "call.v2_indicators_title": "विशिंग खतरे के संकेतक",
+    "call.btn_choose_audio": "ऑडियो फ़ाइल चुनें",
+    "media.v2_subtitle": "उच्च-रिज़ॉल्यूशन फ्रेम निष्कर्षण, फेशियल विसंगतियां और स्क्रीनशॉट ओसीआर स्कैम पहचान।",
+    "media.image_scanner_title": "स्क्रीनशॉट / इमेज ओसीआर स्कैनर",
+    "media.video_scanner_title": "वीडियो डीपफेक न्यूरल फ्रेम विश्लेषण",
+    "url.v2_subtitle": "संदिग्ध लिंक के डोमेन की आयु, टाइपोस्क्वैटिंग और आईपी प्रतिष्ठा की जांच करें।",
+    "url.v2_card_title": "वेब पते का विश्लेषण करें",
+    "url.v2_target_label": "लक्षित यूआरएल या होस्टनाम",
+    "geo.v2_subtitle": "सर्वर स्थान, स्वायत्त सिस्टम नंबर (ASN) और नेटवर्क टेलीमेट्री दिखाने वाला इंटरैक्टिव मैप।",
+    "geo.map_card_title": "सक्रिय खतरा उत्पत्ति मानचित्र",
+    "geo.disclaimer": "स्थान अनुमानित हैं और विश्लेषित नेटवर्क संरचना को दर्शाते हैं, हमलावर का भौतिक स्थान नहीं।",
+    "geo.endpoints_title": "विश्लेषित आईपी एंडपॉइंट्स",
+    "geo.empty_title": "अभी तक कोई खतरा संरचना नहीं मिली",
+    "geo.empty_desc": "नक्शे पर नेटवर्क संरचना देखने के लिए यूआरएल या ईमेल विश्लेषण चलाएं।",
+    "risk.v2_subtitle": "मल्टीमॉडल जोखिम सीमाएं, व्यवहार पैटर्न और दुर्भावनापूर्ण इरादे का वर्गीकरण।",
+    "risk.protocol_title": "जोखिम स्कोरिंग प्रोटोकॉल (0 - 100)",
+    "risk.dna_title": "स्कैम डिजिटल डीएनए वर्गीकरण",
+    "reports.v2_subtitle": "जांच सत्र के दौरान उत्पन्न खतरे की रिपोर्ट की समीक्षा करें, प्रिंट करें और निर्यात करें।",
+    "reports.archive_title": "सत्र जांच पुरालेख",
+    "reports.clear_session": "सत्र साफ़ करें",
+    "reports.empty_title": "कोई जांच रिपोर्ट उपलब्ध नहीं है",
+    "reports.empty_desc": "औपचारिक रिपोर्ट तैयार करने के लिए किसी संदिग्ध संदेश, यूआरएल, ईमेल या फ़ाइल का विश्लेषण करें।",
+    "settings.v2_subtitle": "डिटेक्शन मॉडल की स्थिति, प्लेटफ़ॉर्म कॉन्फ़िगरेशन और सिस्टम प्राथमिकताएं।",
+    "settings.health_title": "एमएल मॉडल एवं सेवा उपलब्धता",
+    "settings.refresh_health": "स्थिति रीफ्रेश करें",
+    "settings.platform_title": "प्लेटफ़ॉर्म विवरण",
   },
 
   mr: {
@@ -629,10 +713,57 @@ const translations = {
     "history.empty": "या सत्रात अद्याप कोणतेही विश्लेषण केलेले नाही.",
     "footer.rights": "सत्य AI 3.0 © 2026 — मल्टीमॉडल सायबर इंटेलिजन्स प्लॅटफॉर्म",
     "footer.note": "शैक्षणिक आणि हॅकाथॉन सादरीकरणाच्या उद्देशाने.",
+
+    // Additional UI & V2 Views
+    "sidebar.promo_title": "एआय सह अधिक<br>स्मार्ट सुरक्षा",
+    "sidebar.promo_desc": "सुरक्षित डिजिटल जगासाठी रिअल-टाइम धोका शोध.",
+    "dash.legend_others": "इतर",
+    "dash.total_threats_sub": "एकूण धोके",
+    "qr.title": "क्यूआर कोड शोध आणि डिकोडिंग",
+    "qr.desc": "प्रतिमेत क्यूआर कोड शोधा, निर्देशक तपासा आणि डेटा डीकोड करा.",
+    "qr.drop_title": "क्यूआर कोड चित्र येथे टाका",
+    "qr.drop_hint": "PNG, JPG, WEBP, BMP समर्थित",
+    "qr.btn_choose": "क्यूआर चित्र निवडा",
+    "qr.btn_detect": "क्यूआर कोड शोधा",
+    "email.v2_subtitle": "ईमेल संदेश तपासा, RFC 822 हेडर पार्स करा आणि SPF, DKIM, DMARC नोंदी सत्यापित करा.",
+    "email.v2_input_title": "ईमेल इनपुट आणि फाइल पार्सर",
+    "email.v2_guide_title": "प्रमाणीकरण प्रोटोकॉल चेकलिस्ट",
+    "call.v2_subtitle": "फोन कॉलमध्ये विशिंग, बँकिंग फसवणूक, व्हॉइस क्लोन आणि दबावाची तपासणी करा.",
+    "call.v2_indicators_title": "विशिंग धोक्याचे निर्देशक",
+    "call.btn_choose_audio": "ऑडिओ फाइल निवडा",
+    "media.v2_subtitle": "हाय-रिझोल्यूशन फ्रेम काढणे, चेहऱ्यावरील विसंगती आणि स्क्रीनशॉट ओसीआर स्कॅम शोध.",
+    "media.image_scanner_title": "स्क्रीनशॉट / इमेज ओसीआर स्कॅनर",
+    "media.video_scanner_title": "व्हिडिओ डीपफेक न्यूरल फ्रेम विश्लेषण",
+    "url.v2_subtitle": "संशयास्पद लिंकचे डोमेन वय, टायपोस्क्वॉटिंग आणि आयपी प्रतिष्ठा तपासा.",
+    "url.v2_card_title": "वेब पत्त्याचे विश्लेषण करा",
+    "url.v2_target_label": "लक्षित यूआरएल किंवा होस्टनाव",
+    "geo.v2_subtitle": "सर्व्हर स्थान, ऑटोनॉमस सिस्टम नंबर (ASN) आणि नेटवर्क टेलिमेट्री दर्शवणारा नकाशा.",
+    "geo.map_card_title": "थेट धोका उगम नकाशा",
+    "geo.disclaimer": "स्थाने अंदाजे आहेत आणि विश्लेषित नेटवर्क दर्शवतात, आक्रमणकर्त्याचे प्रत्यक्ष स्थान नाही.",
+    "geo.endpoints_title": "विश्लेषित आयपी एंडपॉइंट्स",
+    "geo.empty_title": "अद्याप कोणतीही धोकादायक रचना आढळली नाही",
+    "geo.empty_desc": "नकाशावर नेटवर्क रचना पाहण्यासाठी यूआरएल किंवा ईमेल विश्लेषण चालवा.",
+    "risk.v2_subtitle": "मल्टीमॉडल जोखीम मर्यादा, वर्तन पॅटर्न आणि दुर्भावनापूर्ण हेतूचे वर्गीकरण.",
+    "risk.protocol_title": "जोखीम स्कोअरिंग प्रोटोकॉल (0 - 100)",
+    "risk.dna_title": "स्कॅम डिजिटल डीएनए वर्गीकरण",
+    "reports.v2_subtitle": "तपासणी सत्रात तयार झालेले धोका अहवाल तपासा, मुद्रित करा आणि निर्यात करा.",
+    "reports.archive_title": "सत्र तपासणी संग्रह",
+    "reports.clear_session": "सत्र साफ करा",
+    "reports.empty_title": "कोणताही तपासणी अहवाल उपलब्ध नाही",
+    "reports.empty_desc": "अधिकृत अहवाल तयार करण्यासाठी संशयास्पद मेसेज, यूआरएल, ईमेल किंवा फाइलचे विश्लेषण करा.",
+    "settings.v2_subtitle": "डिटेक्शन मॉडेल्सची स्थिती, प्लॅटफॉर्म कॉन्फिगरेशन आणि सिस्टम प्राधान्ये.",
+    "settings.health_title": "एमएल मॉडेल आणि सेवा उपलब्धता",
+    "settings.refresh_health": "स्थिती रीफ्रेश करा",
+    "settings.platform_title": "प्लॅटफॉर्म तपशील",
   }
 };
 
-let currentLanguage = localStorage.getItem("satya_lang") || "en";
+let currentLanguage = "en";
+try {
+  currentLanguage = localStorage.getItem("satya_lang") || "en";
+} catch (e) {
+  currentLanguage = "en";
+}
 if (!["en", "hi", "mr"].includes(currentLanguage)) {
   currentLanguage = "en";
 }
@@ -646,6 +777,18 @@ function t(key, fallback = "") {
   return dict[key] || translations.en[key] || fallback || key;
 }
 
+function initLanguageSelector() {
+  const selectEl = document.getElementById("lang-select");
+  if (!selectEl) return;
+  selectEl.value = currentLanguage;
+  if (!selectEl.dataset.i18nBound) {
+    selectEl.dataset.i18nBound = "true";
+    selectEl.addEventListener("change", (e) => {
+      setLanguage(e.target.value);
+    });
+  }
+}
+
 function applyTranslations() {
   // Update document language tag
   document.documentElement.lang = currentLanguage;
@@ -655,7 +798,11 @@ function applyTranslations() {
     const key = el.getAttribute("data-i18n");
     const val = t(key);
     if (val) {
-      el.textContent = val;
+      if (val.includes("**") || val.includes("<br>")) {
+        el.innerHTML = val.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      } else {
+        el.textContent = val;
+      }
     }
   });
 
@@ -685,10 +832,7 @@ function applyTranslations() {
   }
 
   // Update language selector UI if rendered
-  const selectEl = document.getElementById("lang-select");
-  if (selectEl && selectEl.value !== currentLanguage) {
-    selectEl.value = currentLanguage;
-  }
+  initLanguageSelector();
 
   // Dispatch custom event for dynamic components (like scanner or dossiers)
   window.dispatchEvent(new CustomEvent("languageChanged", { detail: { lang: currentLanguage } }));
@@ -697,13 +841,28 @@ function applyTranslations() {
 function setLanguage(lang) {
   if (!translations[lang]) return;
   currentLanguage = lang;
-  localStorage.setItem("satya_lang", lang);
+  try {
+    localStorage.setItem("satya_lang", lang);
+  } catch (e) {}
   applyTranslations();
 }
 
+// Global exports
+window.translations = translations;
+window.getLanguage = getLanguage;
+window.getCurrentLang = getLanguage;
+window.setLanguage = setLanguage;
+window.t = t;
+window.applyTranslations = applyTranslations;
+window.initLanguageSelector = initLanguageSelector;
+
 // Auto-initialize once DOM is ready
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", applyTranslations);
+  document.addEventListener("DOMContentLoaded", () => {
+    initLanguageSelector();
+    applyTranslations();
+  });
 } else {
+  initLanguageSelector();
   applyTranslations();
 }
