@@ -410,7 +410,7 @@
                 </div>
                 <div class="threat-types-body">
                   <div class="donut-wrap">
-                    <canvas id="threat-donut-chart" width="220" height="220"></canvas>
+                    <canvas id="threat-donut-chart" width="190" height="190"></canvas>
                     <div class="donut-center-badge">
                       <span class="donut-val" id="donut-center-total">24</span>
                       <span class="donut-sub">Total Threats</span>
@@ -597,6 +597,38 @@
                   <span data-i18n="image.btn_analyze">Analyze Image</span>
                   <div class="btn-spinner" hidden></div>
                 </button>
+
+                <!-- Dedicated QR Code Detection Sub-Module -->
+                <div class="qr-detector-card" id="qr-detector-card">
+                  <div class="qr-detector-header">
+                    <div class="qr-detector-title-wrap">
+                      <span class="qr-icon">📱</span>
+                      <h4 class="qr-detector-title">QR Code Detection &amp; Decoding</h4>
+                    </div>
+                    <span class="qr-detector-badge">OpenCV QR</span>
+                  </div>
+                  <p class="qr-detector-desc">Detect presence of QR codes in an image, inspect bounding points, and decode payload data.</p>
+
+                  <div class="dropzone qr-dropzone" id="dropzone-qr" tabindex="0" role="button" aria-label="Upload QR code image">
+                    <div class="dropzone-icon qr-dropzone-icon">📷</div>
+                    <p class="dropzone-title">Drop QR code image here</p>
+                    <p class="dropzone-hint">PNG, JPG, WEBP, BMP supported</p>
+                    <input type="file" id="file-qr" accept=".png,.jpg,.jpeg,.webp,.bmp,.tiff" hidden />
+                    <button type="button" class="upload-btn">Choose QR Image</button>
+                    <div class="file-preview" id="preview-qr" hidden></div>
+                  </div>
+
+                  <button class="analyze-btn qr-btn" id="btn-detect-qr" type="button">
+                    <span class="btn-icon">⚡</span>
+                    <span id="btn-detect-qr-text">Detect QR Code</span>
+                    <div class="btn-spinner" id="spinner-detect-qr" hidden></div>
+                  </button>
+
+                  <div class="qr-result-container" id="qr-result-container" hidden>
+                    <div class="qr-result-header" id="qr-result-header"></div>
+                    <div class="qr-codes-list" id="qr-codes-list"></div>
+                  </div>
+                </div>
               </div>
 
               <!-- Video tab -->

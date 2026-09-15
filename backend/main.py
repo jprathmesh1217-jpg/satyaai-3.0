@@ -261,6 +261,7 @@ def root(request: Request):
             "POST /api/analyze/message",
             "POST /api/analyze/url",
             "POST /api/analyze/image",
+            "POST /api/detect-qr",
             "POST /api/analyze/audio",
             "POST /api/analyze/video",
             "POST /api/analyze/multimodal",
@@ -507,6 +508,46 @@ async def analyze_image_endpoint(file: UploadFile = File(...)):
             dest.unlink(missing_ok=True)
         except Exception:
             pass
+
+
+# ── 3b. QR Code Detection ────────────────────────────────────────────────────
+
+@app.post("/api/detect-qr", tags=["Analysis"])
+async def detect_qr_endpoint(file: UploadFile = File(...)):
+    """Detect and decode QR codes from an uploaded image using OpenCV QRCodeDetector."""
+    try:
+        ext = Path(file.filename or "").suffix.lower()
+        content_type = (file.content_type or "").lower()
+        if ext not in ALLOWED_IMAGE_EXTS and not content_type.startswith("image/"):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Invalid file type '{ext}'. Please upload a valid image ({', '.join(sorted(ALLOWED_IMAGE_EXTS))})."
+            )
+
+        image_bytes = await file.read()
+        if not image_bytes:
+            raise HTTPException(status_code=400, detail="Uploaded image file is empty.")
+
+        from backend.services.qr_detector import detect_qr_codes
+        qr_result = detect_qr_codes(image_bytes)
+
+        return {
+            "success": True,
+            "qr_detected": qr_result["qr_detected"],
+            "count": qr_result["count"],
+            "codes": qr_result["codes"],
+        }
+    except HTTPException:
+        raise
+    except Exception as exc:
+        logger.error(f"QR detection error: {exc}", exc_info=True)
+        return {
+            "success": False,
+            "qr_detected": False,
+            "count": 0,
+            "codes": [],
+            "error": f"QR detection failed: {str(exc)}",
+        }
 
 
 # ── 4. Audio analysis ────────────────────────────────────────────────────────

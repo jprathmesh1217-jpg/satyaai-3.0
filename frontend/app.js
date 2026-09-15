@@ -607,7 +607,8 @@ function drawDonutChart() {
 
   const ctx = canvas.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
-  const size = 220;
+  const wrap = canvas.parentElement;
+  const size = wrap && wrap.clientWidth > 50 ? wrap.clientWidth : 190;
   canvas.width = size * dpr;
   canvas.height = size * dpr;
   ctx.scale(dpr, dpr);
@@ -627,8 +628,8 @@ function drawDonutChart() {
   const total = 24;
 
   const center = size / 2;
-  const radius = 78;
-  const thickness = 20;
+  const radius = center * 0.72;
+  const thickness = Math.max(14, size * 0.095);
 
   let startAngle = -Math.PI / 2;
   segments.forEach(seg => {
@@ -1474,6 +1475,124 @@ async function analyzeImage(customFile, isV2 = false) {
   }
 }
 
+async function detectQRCode() {
+  const qrInput = document.getElementById("file-qr");
+  const imgInput = document.getElementById("file-image");
+  const v2ImgInput = document.getElementById("v2-file-image");
+  const file = qrInput?.files?.[0] || imgInput?.files?.[0] || v2ImgInput?.files?.[0];
+
+  const resultContainer = document.getElementById("qr-result-container");
+  const resultHeader = document.getElementById("qr-result-header");
+  const codesList = document.getElementById("qr-codes-list");
+  const btn = document.getElementById("btn-detect-qr");
+  const btnText = document.getElementById("btn-detect-qr-text");
+  const spinner = document.getElementById("spinner-detect-qr");
+
+  if (!file) {
+    showError("Please select an image file to scan for QR codes.");
+    if (resultContainer) {
+      resultContainer.hidden = false;
+      if (resultHeader) {
+        resultHeader.innerHTML = `<span class="qr-status-pill error">⚠ Please select an image first</span>`;
+      }
+      if (codesList) codesList.innerHTML = "";
+    }
+    return;
+  }
+
+  // Loading state
+  if (btn) btn.disabled = true;
+  if (btnText) btnText.textContent = "Scanning QR Codes...";
+  if (spinner) spinner.hidden = false;
+  if (resultContainer) resultContainer.hidden = false;
+  if (resultHeader) {
+    resultHeader.innerHTML = `<span class="qr-status-pill" style="background: rgba(0, 245, 255, 0.1); border: 1px solid rgba(0, 245, 255, 0.3); color: var(--cyan);">Scanning ${escapeHTML(file.name)}...</span>`;
+  }
+  if (codesList) codesList.innerHTML = "";
+
+  const fd = new FormData();
+  fd.append("file", file);
+
+  try {
+    const data = await postForm("/api/detect-qr", fd);
+    renderQRResult(data, file.name);
+  } catch (err) {
+    if (resultHeader) {
+      resultHeader.innerHTML = `<span class="qr-status-pill error">Scan failed: ${escapeHTML(err.message)}</span>`;
+    }
+    showError(`QR detection failed: ${err.message}`);
+  } finally {
+    if (btn) btn.disabled = false;
+    if (btnText) btnText.textContent = "Detect QR Code";
+    if (spinner) spinner.hidden = true;
+  }
+}
+
+function renderQRResult(data, filename) {
+  const resultContainer = document.getElementById("qr-result-container");
+  const resultHeader = document.getElementById("qr-result-header");
+  const codesList = document.getElementById("qr-codes-list");
+  if (!resultContainer || !resultHeader || !codesList) return;
+
+  resultContainer.hidden = false;
+  codesList.innerHTML = "";
+
+  if (data && data.qr_detected && data.count > 0) {
+    resultHeader.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+        <span class="qr-status-pill detected">✓ QR Code Detected</span>
+        <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary);">
+          ${Number(data.count)} QR Code${data.count > 1 ? "s" : ""} Found
+        </span>
+      </div>
+    `;
+
+    (data.codes || []).forEach((code, idx) => {
+      const itemCard = document.createElement("div");
+      itemCard.className = "qr-item-card";
+
+      const headerDiv = document.createElement("div");
+      headerDiv.className = "qr-item-header";
+      headerDiv.innerHTML = `<span class="qr-item-idx">Code #${idx + 1}</span>`;
+
+      const payloadDiv = document.createElement("div");
+      payloadDiv.className = "qr-payload-box";
+
+      if (code.data && code.data.trim()) {
+        // Strict security: safely escaped text inside DOM via textContent
+        payloadDiv.textContent = code.data;
+      } else {
+        payloadDiv.innerHTML = `<span class="qr-payload-empty">QR code detected, but content could not be decoded.</span>`;
+      }
+
+      itemCard.appendChild(headerDiv);
+      itemCard.appendChild(payloadDiv);
+
+      if (code.points && code.points.length > 0) {
+        const pointsDiv = document.createElement("div");
+        pointsDiv.className = "qr-points-info";
+        const pointsText = code.points.map(pt => `(${pt[0]}, ${pt[1]})`).join(" → ");
+        pointsDiv.textContent = `Bounding Points: ${pointsText}`;
+        itemCard.appendChild(pointsDiv);
+      }
+
+      codesList.appendChild(itemCard);
+    });
+  } else {
+    resultHeader.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span class="qr-status-pill none">ℹ No QR Code Detected</span>
+        <span style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono);">${escapeHTML(filename || "")}</span>
+      </div>
+    `;
+    codesList.innerHTML = `
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">
+        No standard QR code matrix was identified in this image.
+      </div>
+    `;
+  }
+}
+
 async function analyzeVideo(customFile, isV2 = false) {
   const fileInput = isV2 ? document.getElementById("v2-file-video") : document.getElementById("file-video");
   const fallbackInput = isV2 ? document.getElementById("file-video") : document.getElementById("v2-file-video");
@@ -1580,6 +1699,9 @@ function initAnalysisTriggers() {
   document.getElementById("btn-video")?.addEventListener("click", () => analyzeVideo(null, false));
   document.getElementById("btn-email")?.addEventListener("click", () => analyzeEmail(false));
   document.getElementById("btn-call")?.addEventListener("click", () => analyzeCall(false));
+
+  // QR Code Detection Trigger
+  document.getElementById("btn-detect-qr")?.addEventListener("click", () => detectQRCode());
 
   // V2 Forensic Buttons
   document.getElementById("v2-btn-email")?.addEventListener("click", () => analyzeEmail(true));
@@ -2239,6 +2361,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDropzone("dropzone-email", "file-email", "preview-email");
   setupDropzone("dropzone-call", "file-call", "preview-call");
   setupDropzone("dropzone-image", "file-image", "preview-image");
+  setupDropzone("dropzone-qr", "file-qr", "preview-qr");
   setupDropzone("dropzone-video", "file-video", "preview-video");
 
   setupDropzone("v2-dropzone-email", "v2-file-email", "v2-preview-email");
